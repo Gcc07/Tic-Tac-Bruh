@@ -97,14 +97,13 @@ public class TicTacToe {
             }
         }
         // for col in board
-        for (char[] col : board) {
-            for (char col_mark : col) {
-                if (col_mark == mark) {mark_counter++;}
-                else {break;}
-            }
-            if (mark_counter == 3) {
-                mark_counter = 0;
-                return true;
+        char[] temp_column = new char[3];
+        for (int r = 0; r < board.length; r++){
+            for (int c = 0; c < board[r].length; c++){
+                if (board[r][c] == mark ){
+                    temp_column[r] += board[r][c];
+                }
+                
             }
         }
         return false; // temporary
