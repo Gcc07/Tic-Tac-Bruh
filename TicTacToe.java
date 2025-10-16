@@ -125,7 +125,6 @@ public class TicTacToe {
                 else {break;}
             }
             if (mark_counter == 9) {return true;} // If there are three in a row, return true.
-            mark_counter = 0; // Reset counter for next row.
         }
         return false; // temporary
     }   
