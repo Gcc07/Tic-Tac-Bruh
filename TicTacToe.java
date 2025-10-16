@@ -116,15 +116,17 @@ public class TicTacToe {
     }
 
     // TODO 7: Complete this method
-    // Purpose: Return true if the board is full (no spaces left).
+    // Purpose: Return true if the board is full (no spaces left)
     public static boolean isBoardFull() {
-        for (int r = 0; r < board.length; r++) {
-            for (int c = 0; board[r].length < 3; c++) {
-                if (board[r][c] == ' ') {
-                    return true; 
-                }
+        int mark_counter = 0;
+        for (char[] row : board) {
+            for (char row_mark : row) {
+                if (row_mark == 'X' || row_mark == 'O') {mark_counter++;}
+                else {break;}
             }
+            if (mark_counter == 9) {return true;} // If there are three in a row, return true.
+            mark_counter = 0; // Reset counter for next row.
         }
-        return false;
-    }
+        return false; // temporary
+    }   
 }
