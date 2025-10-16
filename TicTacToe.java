@@ -83,28 +83,34 @@ public class TicTacToe {
     // TODO 6: Complete this method
     // Purpose: Return true if the given player has three in a row.
     // Check all rows, columns, and both diagonals.
+
+    // I ended up doing three seperate check types for each condition. Kind of weird, but it works.
     public static boolean checkWin(char mark) {
-        // for rows in board
+        // Check row wins - Counting system
         int mark_counter = 0;
         for (char[] row : board) {
             for (char row_mark : row) {
                 if (row_mark == mark) {mark_counter++;}
                 else {break;}
             }
-            if (mark_counter == 3) {
-                mark_counter = 0;
-                return true;
-            }
+            if (mark_counter == 3) {return true;} // If there are three in a row, return true.
+            mark_counter = 0; // Reset counter for next row.
         }
-        // for col in board
-        char[] temp_column = new char[3];
-        for (int r = 0; r < board.length; r++){
-            for (int c = 0; c < board[r].length; c++){
-                if (board[r][c] == mark ){
-                    temp_column[r] += board[r][c];
+        // Check column wins - Assume no win
+        for (int c = 0; c < board.length; c++) { // for each column
+            boolean columnWin = true; // assume a win.
+            for (int r = 0; r < board.length; r++) { // for each row,
+                if (board[r][c] != mark) { // If the mark isn't there,
+                    columnWin = false; // NO WINNER
+                    break;
                 }
-                
             }
+            if (columnWin) return true;
+        }
+        // Check diagonal wins (This is where I get lazy.)
+        if ((board[0][0] == mark && board[1][1] == mark && board[2][2] == mark) ||
+            (board[0][2] == mark && board[1][1] == mark && board[2][0] == mark)) {
+            return true;
         }
         return false; // temporary
     }
@@ -112,7 +118,13 @@ public class TicTacToe {
     // TODO 7: Complete this method
     // Purpose: Return true if the board is full (no spaces left).
     public static boolean isBoardFull() {
-        // your code here
-        return false; // temporary
+        for (int r = 0; r < board.length; r++) {
+            for (int c = 0; board[r].length < 3; c++) {
+                if (board[r][c] == ' ') {
+                    return true; 
+                }
+            }
+        }
+        return false;
     }
 }
