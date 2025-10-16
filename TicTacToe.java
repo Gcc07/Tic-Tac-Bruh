@@ -124,7 +124,7 @@ public class TicTacToe {
                 if (row_mark == 'X' || row_mark == 'O') {mark_counter++;}
                 else {break;}
             }
-            if (mark_counter == 9) {return true;} // If there are three in a row, return true.
+            if (mark_counter == 9) {return true;} // If all 9 spaces are counted as filled, return true.
         }
         return false; // temporary
     }   
